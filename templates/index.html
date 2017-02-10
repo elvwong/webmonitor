@@ -1,0 +1,48 @@
+<title>web</title>
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Highstock Example</title>
+
+        <script type="text/javascript" src="static/jquery.js"></script>
+        <style type="text/css">
+${demo.css}
+        </style>
+        <script type="text/javascript">
+$(function () {
+    $.getJSON('/data?callback=?', function (data) {
+
+        // Create the chart
+        $('#container').highcharts('StockChart', {
+
+            rangeSelector: {
+                inputEnabled: $('#container').width() > 480,
+                selected: 1
+            },
+
+            title: {
+                text: 'telco'
+            },
+
+            series: [{
+                name: 'telco',
+                data: data,
+                type: 'spline',
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }]
+        });
+    });
+});
+        </script>
+    </head>
+    <body>
+<script src="static/highstock.js"></script>
+<script src="static/exporting.js"></script>
+
+
+<div id="container" style="height: 400px"></div>
+    </body>
+</html>
